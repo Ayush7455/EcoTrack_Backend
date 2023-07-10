@@ -12,9 +12,15 @@ router.post("/increaseHandPrint", (req, res) => {
     return res.status(404).json({ message: "Email and Handprint are required" });
   }
 
+  const handprintValue = parseInt(handprint, 10); // Parse the string value to an integer
+
+  if (isNaN(handprintValue)) {
+    return res.status(400).json({ message: "Handprint must be a valid integer" });
+  }
+
   User.findOneAndUpdate(
     { email: email },
-    { $push: { handprint: handprint } }, // Use $push to add the updated value to the array
+    { $push: { handprint: handprintValue } }, // Use the parsed integer value
     { new: true } // To return the updated document
   )
     .then((user) => {
@@ -26,7 +32,7 @@ router.post("/increaseHandPrint", (req, res) => {
     })
     .catch((err) => {
       console.log(err);
-      res.status(500).json({ error: "Internal Server Error" });
+      res.status(404).json({ error: "Internal Server Error" });
     });
 });
 
