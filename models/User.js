@@ -6,8 +6,8 @@ const userSchema=new mongoose.Schema({
         unique:true
     },
     handprint:{
-        type:String,
-        default:"0"
+        type:Array,
+        default:[]
     },
     goals:{
         type:Array,
