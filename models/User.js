@@ -7,7 +7,7 @@ const userSchema=new mongoose.Schema({
     },
     handprint:{
         type:Array,
-        default:[0]
+        default:[]
     },
     goals:{
         type:Array,
