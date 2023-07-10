@@ -12,7 +12,7 @@ router.post("/increaseHandPrint", (req, res) => {
     return res.status(404).json({ message: "Email and Handprint are required" });
   }
 
-  const handprintValue = parseInt(handprint, 10); // Parse the string value to an integer
+  const handprintValue = parseInt(handprint);
 
   if (isNaN(handprintValue)) {
     return res.status(400).json({ message: "Handprint must be a valid integer" });
