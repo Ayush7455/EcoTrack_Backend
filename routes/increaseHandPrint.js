@@ -12,16 +12,11 @@ router.post("/increaseHandPrint", (req, res) => {
     return res.status(404).json({ message: "Email and Handprint are required" });
   }
 
-  const handprintValue = parseInt(handprint);
-
-  if (isNaN(handprintValue)) {
-    return res.status(400).json({ message: "Handprint must be a valid integer" });
-  }
 
   User.findOneAndUpdate(
     { email: email },
-    { $push: { handprint: handprintValue } }, // Use the parsed integer value
-    { new: true } // To return the updated document
+    { $push: { handprint: handprint} },
+    { new: true }
   )
     .then((user) => {
       if (!user) {
