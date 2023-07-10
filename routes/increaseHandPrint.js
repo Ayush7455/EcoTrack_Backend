@@ -12,10 +12,10 @@ router.post("/increaseHandPrint", (req, res) => {
     return res.status(404).json({ message: "Email and Handprint are required" });
   }
 
-
+  const handprintValue=Number(handprint)
   User.findOneAndUpdate(
     { email: email },
-    { $push: { handprint: handprint} },
+    { $push: { handprint: handprintValue} },
     { new: true }
   )
     .then((user) => {
