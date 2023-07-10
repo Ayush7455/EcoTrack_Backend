@@ -4,7 +4,7 @@ const mongoose=require("mongoose")
 const User=mongoose.model("User")
 
 require("dotenv").config()
-router.post("/getUserFingerprint", (req, res) => {
+router.post("/getHandPrint", (req, res) => {
     const { email } = req.body;
     if (!email) {
       return res.status(200).json({ message: "Email is missing" });
