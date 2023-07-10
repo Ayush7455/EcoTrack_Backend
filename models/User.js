@@ -5,6 +5,10 @@ const userSchema=new mongoose.Schema({
         required:true,
         unique:true
     },
+    handprint:{
+        type:String,
+        default:"0"
+    },
     goals:{
         type:Array,
         default:[]
