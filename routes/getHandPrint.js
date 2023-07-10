@@ -14,8 +14,8 @@ router.post("/getHandPrint", (req, res) => {
           if (!user) {
             return res.status(200).json({ message: "User not found" });
           }
-          const fingerprint = user.fingerprint;
-          return res.send(fingerprint)
+          const Handprint = user.handprint;
+          return res.send({Handprint:Handprint})
         })
         .catch((err) => {
           console.log(err);
