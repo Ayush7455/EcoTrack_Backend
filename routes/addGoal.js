@@ -20,7 +20,7 @@ router.post("/addGoal", (req, res) => {
             if (existingGoal) {
                 return res
                   .status(422)
-                  .json({ error: "Goal with the same title already exists" });
+                  .json({ message: "Goal with the same title already exists" });
               } else {
 
                 const goalId = uuidv4();
