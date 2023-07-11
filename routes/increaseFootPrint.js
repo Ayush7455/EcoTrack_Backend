@@ -12,10 +12,10 @@ router.post("/increaseFootPrint", (req, res) => {
     return res.status(404).json({ message: "Email and Footprint are required" });
   }
 
-  const handprintValue=Number(handprint)
+  const footprintValue=Number(footprint)
   User.findOneAndUpdate(
     { email: email },
-    { $push: { handprint: handprintValue} },
+    { $push: { footprint: footprintValue} },
     { new: true }
   )
     .then((user) => {
