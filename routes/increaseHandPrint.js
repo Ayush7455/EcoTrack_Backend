@@ -8,7 +8,7 @@ require("dotenv").config();
 router.post("/increaseHandPrint", (req, res) => {
   const { email, handprint } = req.body;
 
-  if (!email || !handprintprint) {
+  if (!email || !handprint) {
     return res.status(404).json({ message: "Email and Handprint are required" });
   }
 
