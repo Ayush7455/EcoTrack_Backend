@@ -5,11 +5,11 @@ const User = mongoose.model("User");
 
 require("dotenv").config();
 
-router.post("/increaseHandPrint", (req, res) => {
-  const { email, handprint } = req.body;
+router.post("/increaseFootPrint", (req, res) => {
+  const { email, footprint } = req.body;
 
-  if (!email || !handprint) {
-    return res.status(404).json({ message: "Email and Handprint are required" });
+  if (!email || !footprint) {
+    return res.status(404).json({ message: "Email and Footprint are required" });
   }
 
   const handprintValue=Number(handprint)
@@ -23,7 +23,7 @@ router.post("/increaseHandPrint", (req, res) => {
         return res.status(404).json({ message: "User not found" });
       }
 
-      res.status(200).json({ message: "Handprint updated successfully" });
+      res.status(200).json({ message: "Footprint updated successfully" });
     })
     .catch((err) => {
       console.log(err);

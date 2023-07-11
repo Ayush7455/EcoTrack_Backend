@@ -5,7 +5,7 @@ const User = mongoose.model("User");
 
 require("dotenv").config();
 
-router.post("/getHandPrint", (req, res) => {
+router.post("/getFootPrint", (req, res) => {
   const { email } = req.body;
 
   if (!email) {
@@ -18,13 +18,13 @@ router.post("/getHandPrint", (req, res) => {
         return res.status(404).json({ message: "User not found" });
       }
 
-      const handprint = user.handprint; // Retrieve the handprint array from the user
+      const footprint = user.footprint;
 
-      return res.status(200).json({ handprint: handprint }); // Return the handprint array
+      return res.status(200).json({ footprint: footprint });
     })
     .catch((err) => {
       console.log(err);
-      return res.status(500).json({ message: "Internal server error" }); // Update the status code for the internal server error
+      return res.status(500).json({ message: "Internal server error" });
     });
 });
 
