@@ -6,11 +6,17 @@ require('./models/User');
 const addUser=require("./routes/addUser")
 const getFootPrint=require("./routes/getFootPrint")
 const increaseFootPrint=require("./routes/increaseFootPrint")
+const getHandPrint=require("./routes/getHandPrint")
+const increaseHandPrint=require("./routes/increaseHandPrint")
+const addGoal=require("./routes/addGoal")
 require('./db');
 app.use(bodyParser.json());
 app.use(addUser)
 app.use(getFootPrint)
 app.use(increaseFootPrint)
+app.use(getHandPrint)
+app.use(increaseHandPrint)
+app.use(addGoal)
 app.listen(port, () => {
     console.log("Server is running on port " + port);
 })
