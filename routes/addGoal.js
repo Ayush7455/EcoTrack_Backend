@@ -19,7 +19,7 @@ router.post("/addGoal", (req, res) => {
             const existingGoal=savedUser.goals.find((goal)=>goal.title===title)
             if (existingGoal) {
                 return res
-                  .status(422)
+                  .status(200)
                   .json({ message: "Goal with the same title already exists" });
               } else {
 
