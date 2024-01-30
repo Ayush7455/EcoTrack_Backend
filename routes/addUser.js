@@ -6,8 +6,8 @@ const User=mongoose.model("User")
 require("dotenv").config()
 
 router.post("/addUser",(req,res)=>{
-    const {email}=req.body
-    if(!email){
+    const {email,image}=req.body
+    if(!email||!image){
         return res.status(422).json({error:"Required fields are missing"})
     }
     else{
@@ -17,7 +17,8 @@ router.post("/addUser",(req,res)=>{
             }
             else{
                 const user=new User({
-                    email
+                    email,
+                    image
                 })
                 try {
                     await user.save();
