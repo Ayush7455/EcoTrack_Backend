@@ -6,7 +6,7 @@ const User = mongoose.model("User");
 require("dotenv").config();
 
 router.get("/getUserByEmail", (req, res) => {
-  const { email } = req.body
+  const { email } = req.query
 
   if (!email) {
     return res.status(400).json({ message: "Email is required as a query parameter" });
