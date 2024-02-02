@@ -25,5 +25,10 @@ const userSchema=new mongoose.Schema({
         type:Array,
         default:[]
     }
+    ,
+    messages:{
+        type:Array,
+        default:[]
+    }
 })
 mongoose.model("User",userSchema)
