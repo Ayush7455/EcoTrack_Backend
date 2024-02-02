@@ -5,29 +5,21 @@ const User = mongoose.model("User");
 require("dotenv").config();
 
 router.post("/sendMessage", async (req, res) => {
-  const { email, room, currentMessage, image, name } = req.body;
+  const { userEmail,currentMessage} = req.body;
 
   try {
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({ email: userEmail });
 
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
 
     if (currentMessage !== '') {
-      const messageData = {
-        room: room,
-        message: currentMessage,
-        email: email,
-        image: image,
-        name: name,
-        time: new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes(),
-      };
 
-      user.messages.unshift(messageData);
+      user.messages.unshift(currentMessage);
       await user.save();
 
-      res.json({ message: "Message sent successfully", data: messageData });
+      res.json({ message: "Message sent successfully" });
     } else {
       res.status(400).json({ error: "Empty message cannot be sent" });
     }
