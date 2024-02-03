@@ -13,6 +13,7 @@ const getGoals=require("./routes/getGoals")
 const deleteGoal=require("./routes/deleteGoal")
 const getUserByEmail=require("./routes/getUserByEmail")
 const sendMessage=require("./routes/sendMessage")
+const getMessages=require("./routes/getMessages")
 require('./db');
 app.use(bodyParser.json());
 app.use(addUser)
@@ -25,6 +26,7 @@ app.use(getGoals)
 app.use(deleteGoal)
 app.use(getUserByEmail)
 app.use(sendMessage)
+app.use(getMessages)
 app.listen(port, () => {
     console.log("Server is running on port " + port);
 })
