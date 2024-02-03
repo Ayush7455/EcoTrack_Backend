@@ -13,14 +13,17 @@ router.get("/getRooms/:userEmail", async (req, res) => {
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
-    const uniqueRoomsAndRecentMessages = user.messages.reduce((result, message) => {
-      if (!result[message.room] || result[message.room].time < message.time) {
-        result[message.room] = {
-          message
-        };
-      }
-      return result;
-    }, {});
+
+    const uniqueRoomsAndRecentMessages = Object.values(
+      user.messages.reduce((result, message) => {
+        if (!result[message.room] || result[message.room].time < message.time) {
+          result[message.room] = {
+            message,
+          };
+        }
+        return result;
+      }, {})
+    ).map((roomObject) => roomObject.message);
 
     res.json({ uniqueRoomsAndRecentMessages });
   } catch (err) {
