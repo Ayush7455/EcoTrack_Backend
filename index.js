@@ -43,7 +43,7 @@ app.use(getRooms);
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "http://13.232.219.24:3000",
     methods: ["GET", "POST"],
   },
 });
