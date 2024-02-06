@@ -10,4 +10,4 @@ const messagesSchema=new mongoose.Schema({
     default:[]
    }
 })
-mongoose.model("User",userSchema)
+mongoose.model("Messages",messagesSchema)

@@ -1,34 +1,23 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const mongoose = require("mongoose");
-const User = mongoose.model("User");
-require("dotenv").config();
+const mongoose = require('mongoose');
+const Messages = mongoose.model('Messages');
 
-router.get("/getRooms/:userEmail", async (req, res) => {
-  const { userEmail } = req.params;
+router.get('/getRooms/:email', async (req, res) => {
+  const { email } = req.params;
 
   try {
-    const user = await User.findOne({ email: userEmail });
+    const matchingRooms = await Messages.find({ room: { $regex: email.split('@')[0], $options: 'i' } });
 
-    if (!user) {
-      return res.status(404).json({ error: "User not found" });
-    }
+    const roomsWithFirstMessages = matchingRooms.map((room) => ({
+      room: room.room,
+      firstMessage: room.messages.length > 0 ? room.messages[0] : null,
+    }));
 
-    const uniqueRoomsAndRecentMessages = Object.values(
-      user.messages.reduce((result, message) => {
-        if (!result[message.room] || result[message.room].time < message.time) {
-          result[message.room] = {
-            message,
-          };
-        }
-        return result;
-      }, {})
-    ).map((roomObject) => roomObject.message);
-
-    res.json({ uniqueRoomsAndRecentMessages });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(200).json(roomsWithFirstMessages);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 
