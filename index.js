@@ -43,7 +43,7 @@ app.use(getRooms);
 
 const io = new Server(server, {
   cors: {
-    origin: "http://13.232.219.24:3000",
+    origin: "*",
     methods: ["GET", "POST"],
   },
 });
@@ -103,6 +103,6 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(3001, () => {
+server.listen(7001, () => {
   console.log("SERVER RUNNING");
 });
